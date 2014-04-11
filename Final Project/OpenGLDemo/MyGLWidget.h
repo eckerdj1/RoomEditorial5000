@@ -1,5 +1,7 @@
 #pragma once
 #define GLEW_STATIC
+#pragma comment(lib, "glew32s.lib")
+
 #include "glew.h"
 #include "../glm/glm.hpp"
 #include "../glm/gtc/matrix_transform.hpp"
