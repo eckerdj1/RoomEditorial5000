@@ -141,6 +141,7 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Chair.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Face.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_LoadTextBox.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -201,14 +202,17 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="HalfEdge.cpp" />
     <ClCompile Include="LoadTextBox.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MyGLWidget.cpp" />
     <ClCompile Include="opengldemo.cpp" />
     <ClCompile Include="RotateDial.cpp" />
     <ClCompile Include="RotateSlider.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="Table.cpp" />
+    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="ZoomSlider.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -255,9 +259,11 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="Chair.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Face.h" />
     <ClInclude Include="GeneratedFiles\ui_opengldemo.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Vertex.h" />
     <CustomBuild Include="RotateDial.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing RotateDial.h...</Message>
@@ -312,6 +318,8 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets"</Command>
     </CustomBuild>
+    <ClInclude Include="HalfEdge.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="SceneGraph.h" />
     <CustomBuild Include="MyGLWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
