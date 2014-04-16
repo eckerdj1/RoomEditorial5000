@@ -5,6 +5,11 @@ Face::Face(void)
 {
 }
 
+Face::Face(Vertex one, Vertex two, Vertex three, Vertex four)
+{
+	//TODO: NEEDS IMPLEMENTED
+}
+
 
 Face::~Face(void)
 {
