@@ -9,7 +9,7 @@
 class HalfEdge;
 class Vertex;
 
-class Face
+class Face //Four vertex plane
 {
 public:
 	Face(void);

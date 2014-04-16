@@ -1,9 +1,11 @@
+//Andrew Claudy
+
 #pragma once
 #include <glm\glm.hpp>
 using glm::vec3;
 using glm::vec4;
 
-static int idCounter = 0;
+static int idCounter = 0; //GLOBAL
 
 class Vertex
 {
