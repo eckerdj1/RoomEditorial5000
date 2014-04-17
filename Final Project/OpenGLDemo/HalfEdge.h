@@ -18,4 +18,3 @@ public:
 	HalfEdge* symetric;
 	HalfEdge* nextEdge;
 };
-

@@ -15,12 +15,44 @@ Vertex::Vertex(const Vertex& copy) //Copy CTOR
 	this->normal	= copy.normal;
 }
 
+Vertex& Vertex::operator=(const Vertex& rhs)
+{
+	if(this == &rhs) //e.g., rhs = rhs;
+        return *this; 
+	//implied else
+	return Vertex(rhs.position, rhs.color, rhs.normal);
+}
+
 Vertex::Vertex(vec4 position_, vec3 color_, vec4 normal_)
 {
 	id			= idCounter++;
 	position	= position_;
 	color		= color_;
 	normal		= normal_;
+}
+
+Vertex::Vertex(vec4 position_, vec3 color_) //Normal removed in this CTOR
+{
+	id			= idCounter++;
+	position	= position_;
+	color		= color_;
+	normal		= vec4(0); //To be overwritten over anyways.
+}
+
+Vertex::Vertex(vec3 position_, vec3 color_, vec4 normal_)
+{
+	id			= idCounter++;
+	position	= vec4(position_, 1); //Convert vec3 into vec4 point
+	color		= color_;
+	normal		= normal_;
+}
+
+Vertex::Vertex(vec3 position_, vec3 color_) //Normal removed in this CTOR
+{
+	id			= idCounter++;
+	position	= vec4(position_, 1); //Convert vec3 into vec4 point
+	color		= color_;
+	normal		= vec4(0); //To be overwritten over anyways.
 }
 
 Vertex::~Vertex(void)
