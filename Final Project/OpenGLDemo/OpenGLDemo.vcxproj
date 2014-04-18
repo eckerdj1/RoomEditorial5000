@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Chair.cpp" />
+    <ClCompile Include="ConvexityTester.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="Floor.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MyGLWidget.cpp" />
     <ClCompile Include="opengldemo.cpp" />
+    <ClCompile Include="PlanarityTester.cpp" />
     <ClCompile Include="RotateDial.cpp" />
     <ClCompile Include="RotateSlider.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
@@ -258,11 +260,13 @@
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="Chair.h" />
+    <ClInclude Include="ConvexityTester.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="GeneratedFiles\ui_opengldemo.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="PlanarityTester.h" />
     <ClInclude Include="Vertex.h" />
     <CustomBuild Include="RotateDial.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

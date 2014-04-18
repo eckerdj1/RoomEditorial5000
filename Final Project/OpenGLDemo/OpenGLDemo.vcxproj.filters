@@ -128,6 +128,12 @@
     <ClCompile Include="Vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConvexityTester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanarityTester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="opengldemo.h">
@@ -190,6 +196,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanarityTester.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvexityTester.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
