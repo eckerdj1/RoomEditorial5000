@@ -22,5 +22,9 @@ public:
 	vec4 position;	//In model space coordinates
 	vec3 color;		//RGB color
 	vec4 normal;	//Normal
+
+	const vec4 calculateMidpoint(const vec4& withThisLocation) const;
+	const vec4 calculateMidpoint(const Vertex& withThisLocation) const;
 };
 
+const vec4 calculateMidpoint(const vec4& ptA, const vec4& ptB); //Nonmember helper function

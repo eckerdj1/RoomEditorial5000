@@ -58,3 +58,21 @@ Vertex::Vertex(vec3 position_, vec3 color_) //Normal removed in this CTOR
 Vertex::~Vertex(void)
 {
 }
+
+const vec4 calculateMidpoint(const vec4& ptA, const vec4& ptB)
+{
+	return vec4((ptA.x + ptB.x) / 2.0f,
+				(ptA.y + ptB.y) / 2.0f,
+				(ptA.z + ptB.z) / 2.0f,
+				1.0f);
+}
+
+const vec4 Vertex::calculateMidpoint(const vec4& withThisLocation) const
+{
+	return ::calculateMidpoint(this->position, withThisLocation);
+}
+
+const vec4 Vertex::calculateMidpoint(const Vertex& withThisLocation) const
+{
+	return ::calculateMidpoint(this->position, withThisLocation.position);
+}
