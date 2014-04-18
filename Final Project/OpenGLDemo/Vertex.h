@@ -1,7 +1,7 @@
 //Andrew Claudy
 
 #pragma once
-#include <glm/glm.hpp>
+#include <glm\glm.hpp>
 using glm::vec3;
 using glm::vec4;
 
@@ -23,3 +23,4 @@ public:
 	vec3 color;		//RGB color
 	vec4 normal;	//Normal
 };
+

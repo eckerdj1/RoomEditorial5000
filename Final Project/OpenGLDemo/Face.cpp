@@ -1,5 +1,13 @@
+//Andrew Claudy
+//I numbered the face's halfedges HE0, HE1, HE2, HE3
+
 #include "Face.h"
 
+#include "PlanarityTester.h"
+#include "ConvexityTester.h"
+
+#include <vector>
+using std::vector;
 
 Face::Face(void)
 {
@@ -11,9 +19,21 @@ Face::Face(const Vertex& one_,
 		   const Vertex& four_)
 {
 	//I numbered the face's halfedges HE0, HE1, HE2, HE3
-	//TODO: Planarity Test
-	//TODO: Convexity Test
+	vector<vec4> positions = vector<vec4>();
+	positions.push_back(one_.position);
+	positions.push_back(two_.position);
+	positions.push_back(three_.position);
+	positions.push_back(four_.position);
 
+	if( !checkPlanarity(positions) )
+	{
+		throw new NotPlanarException;
+	}
+	if( !isConvexPolygon(positions) )
+	{
+		throw new NotConvexException;
+	}
+	
 	//Set up the half edges, but don't assign vertices yet.
 	HE0 = new HalfEdge(); //HE0
 	HE0->ownerFace = this;
@@ -81,7 +101,7 @@ void Face::useHalfEdges()
 	/*
 	HE0->vertex;
 	HE0->nextEdge->vertex;
-	HE0->nextEdge->nextEdge->vertex; //aka half-edge->symetric
+	HE0->nextEdge->nextEdge->vertex; //aka half-edge->symmetric
 	HE0->nextEdge->nextEdge->nextEdge->vertex;
 	*/
 }
