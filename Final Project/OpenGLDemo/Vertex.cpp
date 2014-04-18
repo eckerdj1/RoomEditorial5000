@@ -15,12 +15,12 @@ Vertex::Vertex(const Vertex& copy) //Copy CTOR
 	this->normal	= copy.normal;
 }
 
-Vertex& Vertex::operator=(const Vertex& rhs)
+Vertex& Vertex::operator=(const Vertex& rhs) //danger: untested
 {
 	if(this == &rhs) //e.g., rhs = rhs;
         return *this; 
 	//implied else
-	return Vertex(rhs.position, rhs.color, rhs.normal);
+	return *(new Vertex(rhs.position, rhs.color, rhs.normal));
 }
 
 Vertex::Vertex(vec4 position_, vec3 color_, vec4 normal_)
