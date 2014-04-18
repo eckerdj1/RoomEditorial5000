@@ -39,6 +39,23 @@ public:
 
 	void incNext();
 
+	void transXPos();
+	void transXNeg();
+	void transYPos();
+	void transYNeg();
+	void transZPos();
+	void transZNeg();
+
+	void scaleXPos();
+	void scaleXNeg();
+	void scaleYPos();
+	void scaleYNeg();
+	void scaleZPos();
+	void scaleZNeg();
+
+	void rotClockwise();
+	void rotCounterClockwise();
+
 	void setChildCount(int c);
 	void addChild(SceneGraph* sg, int x, int z);
 	void addChild(SceneGraph* sg);

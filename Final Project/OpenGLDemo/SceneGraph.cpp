@@ -122,13 +122,13 @@ void SceneGraph::traverse(mat4 m)
 		model->draw(m);
 	}
 
-	//for (int i=0; i<width * depth; ++i)
-	//{
-		if (children[next])
+	for (int i=0; i<width * depth; ++i)
+	{
+		if (children[i])
 		{
-			children[next]->traverse(m);
+			children[i]->traverse(m);
 		}
-	//}
+	}
 }
 
 void SceneGraph::incNext()
@@ -138,4 +138,74 @@ void SceneGraph::incNext()
 		next = 0;
 	if(!children[next])
 		incNext();
+}
+
+void SceneGraph::transXPos()
+{
+	children[next]->setTransX(children[next]->transX++);
+}
+
+void SceneGraph::transXNeg()
+{
+	children[next]->setTransX(children[next]->transX--);
+}
+
+void SceneGraph::transYPos()
+{
+	children[next]->setTransY(children[next]->transY++);
+}
+
+void SceneGraph::transYNeg()
+{
+	children[next]->setTransY(children[next]->transY--);
+}
+
+void SceneGraph::transZPos()
+{
+	children[next]->setTransZ(children[next]->transZ++);
+}
+
+void SceneGraph::scaleZNeg()
+{
+	children[next]->setScaleZ(children[next]->scaleZ--);
+}
+
+void SceneGraph::scaleXPos()
+{
+	children[next]->setScaleX(children[next]->scaleX++);
+}
+
+void SceneGraph::scaleXNeg()
+{
+	children[next]->setScaleX(children[next]->scaleX--);
+}
+
+void SceneGraph::scaleYPos()
+{
+	children[next]->setScaleY(children[next]->scaleY++);
+}
+
+void SceneGraph::scaleYNeg()
+{
+	children[next]->setScaleY(children[next]->scaleY--);
+}
+
+void SceneGraph::scaleZPos()
+{
+	children[next]->setScaleZ(children[next]->scaleZ++);
+}
+
+void SceneGraph::scaleZNeg()
+{
+	children[next]->setScaleZ(children[next]->scaleZ--);
+}
+
+void SceneGraph::rotClockwise()
+{
+	children[next]->setRotY(children[next]->rotY+15);
+}
+
+void SceneGraph::rotCounterClockwise()
+{
+	children[next]->setRotY(children[next]->rotY-15);
 }
