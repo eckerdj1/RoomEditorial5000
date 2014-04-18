@@ -37,6 +37,8 @@ public:
 	void setRotY(float theta) {rotY = theta;}
 	void setFloorSize(int x, int z);
 
+	void incNext();
+
 	void setChildCount(int c);
 	void addChild(SceneGraph* sg, int x, int z);
 	void addChild(SceneGraph* sg);
@@ -55,6 +57,8 @@ private:
 	float transX, transY, transZ;
 	float scaleX, scaleY, scaleZ;
 	float rotY;
+
+	int next;
 
 	//tNode* root;
 	//int rootChildCount;

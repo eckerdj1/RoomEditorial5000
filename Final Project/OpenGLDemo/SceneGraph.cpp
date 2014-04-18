@@ -12,6 +12,7 @@ SceneGraph::SceneGraph()
 	children = new SceneGraph*[width * depth];
 	for (int i=0; i<width * depth; ++i)
 		children[i] = 0;
+	next = 0;
 }
 SceneGraph::SceneGraph(int w, int d)
 {
@@ -25,6 +26,7 @@ SceneGraph::SceneGraph(int w, int d)
 	children = new SceneGraph*[width * depth];
 	for (int i=0; i<width * depth; ++i)
 		children[i] = 0;
+	next = 0;
 }
 
 
@@ -120,11 +122,20 @@ void SceneGraph::traverse(mat4 m)
 		model->draw(m);
 	}
 
-	/*for (int i=0; i<width * depth; ++i)
-	{
-		if (children[i])
+	//for (int i=0; i<width * depth; ++i)
+	//{
+		if (children[next])
 		{
-			children[i]->traverse(m);
+			children[next]->traverse(m);
 		}
-	}*/
+	//}
+}
+
+void SceneGraph::incNext()
+{
+	next++;
+	if(next >= width * depth)
+		next = 0;
+	if(!children[next])
+		incNext();
 }

@@ -52,6 +52,7 @@ public slots:
 	void lightY(int);
 	void lightZ(int);
 	void loadNewScene(string fileName);
+	void nextGeo();
 
 private:
 	unsigned int vertexShader;
@@ -85,5 +86,7 @@ private:
 
 	vec3 lightPos;
 	mat4 lightMatrix;
+
+	int next;
 
 };

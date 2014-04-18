@@ -49,6 +49,7 @@ public:
     QLabel *label_5;
     QSlider *verticalSlider_3;
     QLabel *label_6;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -157,6 +158,9 @@ public:
         label_6->setFont(font2);
         label_6->setAlignment(Qt::AlignCenter);
         label_6->setWordWrap(true);
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(20, 600, 75, 23));
         OpenGLDemoClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(OpenGLDemoClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -183,6 +187,7 @@ public:
         QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), widget, SLOT(lightX(int)));
         QObject::connect(horizontalSlider_2, SIGNAL(valueChanged(int)), widget, SLOT(lightZ(int)));
         QObject::connect(verticalSlider_3, SIGNAL(valueChanged(int)), widget, SLOT(lightY(int)));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), widget, SLOT(nextGeo()));
 
         QMetaObject::connectSlotsByName(OpenGLDemoClass);
     } // setupUi
@@ -197,6 +202,7 @@ public:
         label_4->setText(QApplication::translate("OpenGLDemoClass", "Light Left/Right", 0));
         label_5->setText(QApplication::translate("OpenGLDemoClass", "Light Forward/Back", 0));
         label_6->setText(QApplication::translate("OpenGLDemoClass", "Light Height", 0));
+        pushButton_2->setText(QApplication::translate("OpenGLDemoClass", "Next", 0));
     } // retranslateUi
 
 };
