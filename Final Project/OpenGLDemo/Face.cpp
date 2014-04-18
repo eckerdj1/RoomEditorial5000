@@ -11,6 +11,7 @@ using std::vector;
 
 Face::Face(void)
 {
+	HE0 = nullptr;
 }
 
 Face::Face(const Vertex& one_, 
@@ -81,6 +82,29 @@ Face::Face(const Vertex& one_,
 
 Face::~Face(void)
 {
+	//DE stands for DELETING EDGE
+	HalfEdge *DE1 = nullptr, *DE2 = nullptr, *DE3 = nullptr;
+	if(HE0 != nullptr) //Prevent crashes from dereferencing null pointers.
+		DE1= HE0->nextEdge;
+
+	if(DE1 != nullptr)
+	{
+		DE2 = DE1->nextEdge;
+		delete DE1;
+	}
+
+	if(DE2 != nullptr)
+	{
+		DE3 = DE2->nextEdge;
+		delete DE2;
+	}
+
+	if(DE3 != nullptr)
+		delete DE3;
+
+	//Lastly,
+	if(HE0 != nullptr)
+		delete HE0;
 }
 
 

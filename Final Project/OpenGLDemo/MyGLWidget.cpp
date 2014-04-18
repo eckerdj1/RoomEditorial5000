@@ -1,10 +1,15 @@
 #include "MyGLWidget.h"
+#include "Face.h"
 
 MyGLWidget::MyGLWidget(QWidget* parent) : QGLWidget(parent) {
 	camZoom = 10.0f;
 	camRotX = -45.0f;
 	camRotY = 0.0f;
 	lightPos = vec3(0.0f, 5.5f, 10.0f);
+	Face f( Vertex(vec4(1, 1, -1, 1), vec3(.8f, .7f, .43f)),
+		Vertex(vec4(2, 1, -1, 1), vec3(.8f, .7f, .43f)),
+		Vertex(vec4(2, 2, -2, 1), vec3(.8f, .7f, .43f)),
+		Vertex(vec4(1, 2, -2, 1), vec3(.8f, .7f, .43f))  );
 }
 
 MyGLWidget::~MyGLWidget() {
