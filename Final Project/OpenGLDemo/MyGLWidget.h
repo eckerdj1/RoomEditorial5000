@@ -52,7 +52,26 @@ public slots:
 	void lightY(int);
 	void lightZ(int);
 	void loadNewScene(string fileName);
+
 	void nextGeo();
+	void prevGeo();
+
+	void moveXPos();
+	void moveXNeg();
+	void moveYPos();
+	void moveYNeg();
+	void moveZPos();
+	void moveZNeg();
+
+	void scaleXUp();
+	void scaleXDown();
+	void scaleYUp();
+	void scaleYDown();
+	void scaleZUp();
+	void scaleZDown();
+
+	void rotateLeft();
+	void rotateRight();
 
 private:
 	unsigned int vertexShader;

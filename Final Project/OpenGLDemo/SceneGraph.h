@@ -38,6 +38,7 @@ public:
 	void setFloorSize(int x, int z);
 
 	void incNext();
+	void decNext();
 
 	void transXPos();
 	void transXNeg();
@@ -53,8 +54,8 @@ public:
 	void scaleZPos();
 	void scaleZNeg();
 
-	void rotClockwise();
-	void rotCounterClockwise();
+	void rotLeft();
+	void rotRight();
 
 	void setChildCount(int c);
 	void addChild(SceneGraph* sg, int x, int z);

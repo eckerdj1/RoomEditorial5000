@@ -140,72 +140,87 @@ void SceneGraph::incNext()
 		incNext();
 }
 
+void SceneGraph::decNext()
+{
+	next--;
+	if(next < 0)
+		next = width * depth - 1;
+	if(!children[next])
+		decNext();
+}
+
 void SceneGraph::transXPos()
 {
-	children[next]->setTransX(children[next]->transX++);
+	children[next]->setTransX(++children[next]->transX);
 }
 
 void SceneGraph::transXNeg()
 {
-	children[next]->setTransX(children[next]->transX--);
+	children[next]->setTransX(--children[next]->transX);
 }
 
 void SceneGraph::transYPos()
 {
-	children[next]->setTransY(children[next]->transY++);
+	children[next]->setTransY(++children[next]->transY);
 }
 
 void SceneGraph::transYNeg()
 {
-	children[next]->setTransY(children[next]->transY--);
+	children[next]->setTransY(--children[next]->transY);
 }
 
 void SceneGraph::transZPos()
 {
-	children[next]->setTransZ(children[next]->transZ++);
+	children[next]->setTransZ(++children[next]->transZ);
 }
 
-void SceneGraph::scaleZNeg()
+void SceneGraph::transZNeg()
 {
-	children[next]->setScaleZ(children[next]->scaleZ--);
+	children[next]->setTransZ(--children[next]->transZ);
 }
 
 void SceneGraph::scaleXPos()
 {
-	children[next]->setScaleX(children[next]->scaleX++);
+	children[next]->setScaleX(children[next]->scaleX+.25f);
 }
 
 void SceneGraph::scaleXNeg()
 {
-	children[next]->setScaleX(children[next]->scaleX--);
+	children[next]->setScaleX(children[next]->scaleX-.25f);
+	if(children[next]->scaleX <= 0.0f)
+		children[next]->setScaleX(0.25f);
 }
 
 void SceneGraph::scaleYPos()
 {
-	children[next]->setScaleY(children[next]->scaleY++);
+	children[next]->setScaleY(children[next]->scaleY+.25f);
 }
 
 void SceneGraph::scaleYNeg()
 {
-	children[next]->setScaleY(children[next]->scaleY--);
+	children[next]->setScaleY(children[next]->scaleY-.25f);
+	if(children[next]->scaleY <= 0.0f)
+		children[next]->setScaleY(0.25f);
 }
 
 void SceneGraph::scaleZPos()
 {
-	children[next]->setScaleZ(children[next]->scaleZ++);
+	children[next]->setScaleZ(children[next]->scaleZ+.25f);
 }
 
 void SceneGraph::scaleZNeg()
 {
-	children[next]->setScaleZ(children[next]->scaleZ--);
+	children[next]->setScaleZ(children[next]->scaleZ-.25f);
+	if(children[next]->scaleZ <= 0.0f)
+		children[next]->setScaleZ(0.25f);
 }
 
-void SceneGraph::rotClockwise()
-{
-	children[next]->setRotY(children[next]->rotY+15);
-}
-
-void SceneGraph::rotCounterClockwise()
+void SceneGraph::rotLeft()
 {
 	children[next]->setRotY(children[next]->rotY-15);
+}
+
+void SceneGraph::rotRight()
+{
+	children[next]->setRotY(children[next]->rotY+15);
 }
