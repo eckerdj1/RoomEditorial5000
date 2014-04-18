@@ -29,6 +29,13 @@ class NotConvexException : public exception
 	}
 };
 
+class NotInitializedException : public exception
+{
+	const char* what() const {
+		return "Half Edge zero HE0 is not pointing to anything.";
+	}
+};
+
 class Face //Four vertex plane
 {
 public:
@@ -41,5 +48,7 @@ public:
 		 const Vertex& four_);
 	void useHalfEdges(); //TODO: needs to return something
 	vec4 calculateFaceNormal() const;
+
+	vec4 calculateFaceCenterAveragePoint() const;
 };
 

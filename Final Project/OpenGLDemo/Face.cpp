@@ -132,6 +132,8 @@ void Face::useHalfEdges()
 
 vec4 Face::calculateFaceNormal() const
 {
+	if(HE0 == nullptr)
+		throw new NotInitializedException;
 	//Assumes that half edge positions are is w=1
 	//BA and BC need to be w=0 because they are vectors
 	vec3 BA = vec3( //A-B
@@ -145,4 +147,24 @@ vec4 Face::calculateFaceNormal() const
 	vec3 crossProduct = glm::cross(BA, BC);
 	crossProduct = glm::normalize(crossProduct);
 	return vec4(crossProduct, 0.f); //make normal have w=0;
+}
+
+vec4 Face::calculateFaceCenterAveragePoint() const
+{
+	if(HE0 == nullptr)
+		throw new NotInitializedException;
+
+	HalfEdge *HE1 = HE0->nextEdge;
+	HalfEdge *HE2 = HE1->nextEdge;
+	HalfEdge *HE3 = HE2->nextEdge;
+
+	float xSum = HE0->vertex->position.x + HE1->vertex->position.x + HE2->vertex->position.x + HE3->vertex->position.x;
+	float ySum = HE0->vertex->position.y + HE1->vertex->position.y + HE2->vertex->position.y + HE3->vertex->position.y;
+	float zSum = HE0->vertex->position.z + HE1->vertex->position.z + HE2->vertex->position.z + HE3->vertex->position.z;
+
+	float xAvg = xSum / 4.0f;
+	float yAvg = ySum / 4.0f;
+	float zAvg = zSum / 4.0f;
+
+	return vec4(xAvg, yAvg, zAvg, 1.0f); //w=1 because it's a point in 3D space.
 }
