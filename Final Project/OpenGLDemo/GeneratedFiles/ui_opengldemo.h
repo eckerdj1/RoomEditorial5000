@@ -187,7 +187,7 @@ public:
         pushButton_3->setGeometry(QRect(140, 600, 31, 23));
         pushButton_4 = new QPushButton(centralWidget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(110, 620, 31, 23));
+        pushButton_4->setGeometry(QRect(110, 600, 31, 23));
         pushButton_5 = new QPushButton(centralWidget);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(80, 600, 31, 23));
@@ -214,7 +214,7 @@ public:
         pushButton_10->setGeometry(QRect(190, 580, 31, 23));
         pushButton_11 = new QPushButton(centralWidget);
         pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
-        pushButton_11->setGeometry(QRect(220, 620, 31, 23));
+        pushButton_11->setGeometry(QRect(220, 600, 31, 23));
         pushButton_14 = new QPushButton(centralWidget);
         pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
         pushButton_14->setGeometry(QRect(220, 580, 31, 23));

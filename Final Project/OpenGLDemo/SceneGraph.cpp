@@ -188,7 +188,7 @@ void SceneGraph::scaleXNeg()
 {
 	children[next]->setScaleX(children[next]->scaleX-.25f);
 	if(children[next]->scaleX <= 0.0f)
-		children[next]->setScaleX(0.25f);
+		children[next]->setScaleX(0.01f);
 }
 
 void SceneGraph::scaleYPos()
@@ -200,7 +200,7 @@ void SceneGraph::scaleYNeg()
 {
 	children[next]->setScaleY(children[next]->scaleY-.25f);
 	if(children[next]->scaleY <= 0.0f)
-		children[next]->setScaleY(0.25f);
+		children[next]->setScaleY(0.01f);
 }
 
 void SceneGraph::scaleZPos()
@@ -212,7 +212,7 @@ void SceneGraph::scaleZNeg()
 {
 	children[next]->setScaleZ(children[next]->scaleZ-.25f);
 	if(children[next]->scaleZ <= 0.0f)
-		children[next]->setScaleZ(0.25f);
+		children[next]->setScaleZ(0.01f);
 }
 
 void SceneGraph::rotLeft()
