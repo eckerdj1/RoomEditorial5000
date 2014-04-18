@@ -170,8 +170,8 @@ public:
         verticalSlider_3->setGeometry(QRect(760, 430, 22, 131));
         verticalSlider_3->setMinimum(1);
         verticalSlider_3->setMaximum(100);
-        verticalSlider_3->setValue(10);
-        verticalSlider_3->setSliderPosition(10);
+        verticalSlider_3->setValue(80);
+        verticalSlider_3->setSliderPosition(80);
         verticalSlider_3->setOrientation(Qt::Vertical);
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
@@ -279,6 +279,8 @@ public:
         QObject::connect(pushButton_15, SIGNAL(clicked()), widget, SLOT(scaleXUp()));
         QObject::connect(pushButton_12, SIGNAL(clicked()), widget, SLOT(rotateLeft()));
         QObject::connect(pushButton_13, SIGNAL(clicked()), widget, SLOT(rotateRight()));
+        QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), widget, SLOT(lightX(int)));
+        QObject::connect(horizontalSlider, SIGNAL(sliderMoved(int)), widget, SLOT(lightX(int)));
 
         QMetaObject::connectSlotsByName(OpenGLDemoClass);
     } // setupUi

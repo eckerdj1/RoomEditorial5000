@@ -303,10 +303,10 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>80</number>
     </property>
     <property name="sliderPosition">
-     <number>10</number>
+     <number>80</number>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
@@ -1014,7 +1014,7 @@
    <slot>scaleXDown()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>222</x>
+     <x>212</x>
      <y>646</y>
     </hint>
     <hint type="destinationlabel">
@@ -1046,7 +1046,7 @@
    <slot>scaleZDown()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>251</x>
+     <x>241</x>
      <y>623</y>
     </hint>
     <hint type="destinationlabel">
@@ -1078,7 +1078,7 @@
    <slot>scaleXUp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>283</x>
+     <x>273</x>
      <y>642</y>
     </hint>
     <hint type="destinationlabel">
@@ -1116,6 +1116,38 @@
     <hint type="destinationlabel">
      <x>337</x>
      <y>560</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>widget</receiver>
+   <slot>lightX(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>429</x>
+     <y>611</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>427</x>
+     <y>557</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>widget</receiver>
+   <slot>lightX(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>493</x>
+     <y>604</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>493</x>
+     <y>559</y>
     </hint>
    </hints>
   </connection>
