@@ -394,6 +394,8 @@
     <None Include="color_xforms.vert" />
     <None Include="lambert.frag" />
     <None Include="lambert.vert" />
+    <None Include="phong.frag" />
+    <None Include="phong.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

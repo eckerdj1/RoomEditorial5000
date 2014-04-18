@@ -20,7 +20,7 @@ void MyGLWidget::initializeGL() {
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClearDepth(1.0);
 
 	
@@ -31,8 +31,8 @@ void MyGLWidget::initializeGL() {
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	shaderProgram = glCreateProgram();
 
-	const char* vertexSource = textFileRead("lambert.vert");
-	const char* fragmentSource = textFileRead("lambert.frag");
+	const char* vertexSource = textFileRead("phong.vert");
+	const char* fragmentSource = textFileRead("phong.frag");
 	glShaderSource(vertexShader, 1, &vertexSource, 0);
 	glShaderSource(fragmentShader, 1, &fragmentSource, 0);
 	glCompileShader(vertexShader);
@@ -51,6 +51,7 @@ void MyGLWidget::initializeGL() {
 	u_projLocation = glGetUniformLocation(shaderProgram, "u_projMatrix");
 	u_modelMatrix = glGetUniformLocation(shaderProgram, "u_modelMatrix");
 	u_lightPos = glGetUniformLocation(shaderProgram, "u_lightPos");
+	u_cameraPos = glGetUniformLocation(shaderProgram, "u_cameraPos");
 
 	glUseProgram(shaderProgram);
 
@@ -83,6 +84,9 @@ void MyGLWidget::paintGL() {
 	
 	//Set the camera
 	cameraTrans = glm::lookAt(vec3(camPos.x, camPos.y, camPos.z), vec3(0, 0, 0), vec3(camUp.x, camUp.y, camUp.z));
+
+	//Create Camera Matrix
+	glUniformMatrix4fv(u_cameraPos, 1, GL_FALSE, &cameraTrans[0][0]);
 
 	//Lighting Calculations and Representation
 	lightMatrix = mat4(1.0f);

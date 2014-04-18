@@ -66,6 +66,7 @@ private:
 	unsigned int u_projLocation;
 	unsigned int u_modelMatrix;
 	unsigned int u_lightPos;
+	unsigned int u_cameraPos;
 
 	SceneGraph* sg;
 	Cube blueCube, redCube, greenCube, orangeCube, purpleCube, whiteCube;
