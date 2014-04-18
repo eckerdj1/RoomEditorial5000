@@ -11,11 +11,12 @@ void main() {
     vec3 ambientContrib = fs_color * 0.1;
 	vec4 diffuseColor = vec4(fs_color, 1.0);
 	vec4 specularColor = vec4(fs_color, 1.0);
+	float specExponent = 4.0f;
 
 	//TODO: complete this using the diffuse equation from class!
 	float diffuseTerm = clamp(dot(fs_light, fs_normal), 0.0f, 1.0f);
 
-	float specularTerm = max(dot(fs_normal,halfway),0.0f);
+	float specularTerm = pow(max(dot(fs_normal,halfway),0.0f),specExponent);
 
 	//out_Color = diffuseColor;
 	

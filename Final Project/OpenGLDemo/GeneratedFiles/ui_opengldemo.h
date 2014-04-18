@@ -87,8 +87,8 @@ public:
         dial->setGeometry(QRect(700, 60, 101, 81));
         dial->setLayoutDirection(Qt::LeftToRight);
         dial->setMaximum(360);
-        dial->setValue(45);
-        dial->setSliderPosition(45);
+        dial->setValue(0);
+        dial->setSliderPosition(0);
         dial->setOrientation(Qt::Horizontal);
         dial->setInvertedAppearance(false);
         dial->setInvertedControls(false);
