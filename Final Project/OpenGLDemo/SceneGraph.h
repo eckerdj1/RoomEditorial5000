@@ -34,6 +34,10 @@ public:
 	void setTransX(float x) {transX = x;}
 	void setTransY(float y) {transY = y;}
 	void setTransZ(float z) {transZ = z;}
+
+	float getChildTransX() {return children[next]->transX;}
+	float getChildTransY() {return children[next]->transY;}
+	float getChildTransZ() {return children[next]->transZ;}
 	
 	//Setters for geometry scaling
 	void setScaleX(float x) {scaleX = x;}

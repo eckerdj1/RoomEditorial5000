@@ -107,7 +107,7 @@ private:
 	float camZoom;
 
 	vec3 lightPos;
-	mat4 lightMatrix;
+	//mat4 lightMatrix;
 
 	int next;
 

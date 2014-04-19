@@ -97,7 +97,7 @@ void MyGLWidget::paintGL() {
 	glUniformMatrix4fv(u_cameraPos, 1, GL_FALSE, &cameraTrans[0][0]);
 
 	//Lighting Calculations and Representation
-	lightMatrix = mat4(1.0f);
+	//lightMatrix = mat4(1.0f);
 	mat4 lightTrans = glm::translate(mat4(1.0f), lightPos);
 	mat4 lightScale = glm::scale(mat4(1.0f), vec3(0.5f, 0.5f, 0.5f));
 	lightTrans = cameraTrans * lightTrans * lightScale;
@@ -108,6 +108,12 @@ void MyGLWidget::paintGL() {
 
 	//Traverse the scene graph
 	sg->traverse(cameraTrans);
+
+	//Indicator Representation
+	mat4 indicatorTrans = glm::translate(mat4(1.0f), vec3(sg->getChildTransX(), sg->getChildTransY() + 3.0f, sg->getChildTransZ()));
+	mat4 indicatorScale = glm::scale(mat4(1.0f), vec3(0.125f, 0.5f, 0.125f));
+	indicatorTrans = cameraTrans * indicatorTrans * indicatorScale;
+	purpleCube.draw(indicatorTrans);
 	
 	glFlush();
 }
