@@ -12,6 +12,9 @@ using glm::vec4;
 #include <exception>
 using std::exception;
 
+#include <vector>
+using std::vector;
+
 //Forward declaration
 class HalfEdge;
 class Vertex;
@@ -48,7 +51,7 @@ public:
 		 const Vertex& four_);
 	void useHalfEdges(); //TODO: needs to return something
 	vec4 calculateFaceNormal() const;
-
+	vector<Face> splitIntoFourFaces();
 	vec4 calculateFaceCenterAveragePoint() const;
 };
 

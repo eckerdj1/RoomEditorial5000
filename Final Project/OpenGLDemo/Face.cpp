@@ -81,7 +81,7 @@ Face::Face(const Vertex& one_,
 
 
 Face::~Face(void)
-{
+{/*
 	//DE stands for DELETING EDGE
 	HalfEdge *DE1 = nullptr, *DE2 = nullptr, *DE3 = nullptr;
 	if(HE0 != nullptr) //Prevent crashes from dereferencing null pointers.
@@ -105,7 +105,7 @@ Face::~Face(void)
 	//Lastly,
 	if(HE0 != nullptr)
 		delete HE0;
-}
+*/}
 
 
 void Face::useHalfEdges()
@@ -147,6 +147,64 @@ vec4 Face::calculateFaceNormal() const
 	vec3 crossProduct = glm::cross(BA, BC);
 	crossProduct = glm::normalize(crossProduct);
 	return vec4(crossProduct, 0.f); //make normal have w=0;
+}
+
+vector<Face> Face::splitIntoFourFaces()
+{
+	if(HE0 == nullptr)
+		throw new NotInitializedException;
+
+	HalfEdge *HE1 = HE0->nextEdge;
+	HalfEdge *HE2 = HE1->nextEdge;
+	HalfEdge *HE3 = HE2->nextEdge;
+	vector<Face> fourNewFaces;
+	
+	vec4 centroidAveragePointOfFace = calculateFaceCenterAveragePoint();
+	vec4 ABHalfPt = calculateMidpoint(HE0->vertex->position, HE1->vertex->position);
+	vec4 BCHalfPt = calculateMidpoint(HE1->vertex->position, HE2->vertex->position);
+	vec4 CDHalfPt = calculateMidpoint(HE2->vertex->position, HE3->vertex->position);
+	vec4 DAHalfPt = calculateMidpoint(HE3->vertex->position, HE0->vertex->position);
+
+	//Instantiate 4 new faces
+	//ajc: Here is the naming convention (A = HE0, B = HE1, C = HE2, D = HE3)
+	//D_______________________C
+	//|			|			  |
+	//|	Quad2	|	Quad1	  |
+	//|---------|-------------| <e.g. this point is BCHalfPt
+	//|	Quad3	|	Quad4	  |
+	//|_________|_____________|
+	//A			^ABHalfPt	  B
+	//Place a breakpoint here and use Immediate Window to observe idCounter.
+	fourNewFaces.push_back(
+		Face( *(HE0->vertex), //A
+		Vertex(ABHalfPt, HE0->vertex->color),
+		Vertex(centroidAveragePointOfFace, HE0->vertex->color),
+		Vertex(DAHalfPt, HE0->vertex->color) ) 
+		);
+
+	fourNewFaces.push_back( 
+		Face( Vertex(ABHalfPt, HE1->vertex->color),
+		*(HE1->vertex), //B
+		Vertex(BCHalfPt, HE1->vertex->color),
+		Vertex(centroidAveragePointOfFace, HE1->vertex->color) ) 
+		);
+
+	fourNewFaces.push_back(
+		Face( Vertex(centroidAveragePointOfFace, HE2->vertex->color),
+		Vertex(BCHalfPt, HE2->vertex->color),
+		*(HE2->vertex), //C
+		Vertex(CDHalfPt, HE2->vertex->color) )
+		);
+
+	fourNewFaces.push_back(
+		Face( Vertex(DAHalfPt, HE3->vertex->color),
+		Vertex(centroidAveragePointOfFace, HE3->vertex->color),
+		Vertex(CDHalfPt, HE3->vertex->color),
+		*(HE3->vertex) ) //D
+		);
+	
+	//Place a breakpoint here and use Immediate Window to observe idCounter.
+	return fourNewFaces;
 }
 
 vec4 Face::calculateFaceCenterAveragePoint() const
