@@ -37,6 +37,27 @@ public:
 	void setRotY(float theta) {rotY = theta;}
 	void setFloorSize(int x, int z);
 
+	void incNext();
+	void decNext();
+	int getNext() {return next;}
+
+	void transXPos();
+	void transXNeg();
+	void transYPos();
+	void transYNeg();
+	void transZPos();
+	void transZNeg();
+
+	void scaleXPos();
+	void scaleXNeg();
+	void scaleYPos();
+	void scaleYNeg();
+	void scaleZPos();
+	void scaleZNeg();
+
+	void rotLeft();
+	void rotRight();
+
 	void setChildCount(int c);
 	void addChild(SceneGraph* sg, int x, int z);
 	void addChild(SceneGraph* sg);
@@ -44,7 +65,6 @@ public:
 
 	void traverse(mat4 m);
 
-	
 private:
 	SceneGraph** children;
 	float height;
@@ -55,6 +75,8 @@ private:
 	float transX, transY, transZ;
 	float scaleX, scaleY, scaleZ;
 	float rotY;
+
+	int next;
 
 	//tNode* root;
 	//int rootChildCount;

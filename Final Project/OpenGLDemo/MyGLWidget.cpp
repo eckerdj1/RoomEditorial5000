@@ -10,6 +10,8 @@ MyGLWidget::MyGLWidget(QWidget* parent) : QGLWidget(parent) {
 		Vertex(vec4(2, 1, -1, 1), vec3(.8f, .7f, .43f)),
 		Vertex(vec4(2, 2, -2, 1), vec3(.8f, .7f, .43f)),
 		Vertex(vec4(1, 2, -2, 1), vec3(.8f, .7f, .43f))  );
+
+	next = 0;
 }
 
 MyGLWidget::~MyGLWidget() {
@@ -73,6 +75,8 @@ void MyGLWidget::initializeGL() {
 	cameraRef = vec3(0.0f);
 
 	readScene("testSceneHW1.txt");
+	sg->incNext();
+	emit sendInt(sg->getNext());
 }
 
 void MyGLWidget::paintGL() {
@@ -105,7 +109,6 @@ void MyGLWidget::paintGL() {
 
 	//Traverse the scene graph
 	sg->traverse(cameraTrans);
-
 	
 
 	glFlush();
@@ -313,6 +316,120 @@ void MyGLWidget::zoomCamera(int num)
 void MyGLWidget::loadNewScene(string fileName)
 {
 	readScene(fileName);
+	paintGL();
+	update();
+}
+
+void MyGLWidget::nextGeo()
+{
+	sg->incNext();
+	emit sendInt(sg->getNext());
+	paintGL();
+	update();
+}
+
+void MyGLWidget::prevGeo()
+{
+	sg->decNext();
+	emit sendInt(sg->getNext());
+	paintGL();
+	update();
+}
+
+void MyGLWidget::moveXPos()
+{
+	sg->transXPos();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::moveXNeg()
+{
+	sg->transXNeg();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::moveYPos()
+{
+	sg->transYPos();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::moveYNeg()
+{
+	sg->transYNeg();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::moveZPos()
+{
+	sg->transZPos();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::moveZNeg()
+{
+	sg->transZNeg();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::scaleXUp()
+{
+	sg->scaleXPos();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::scaleXDown()
+{
+	sg->scaleXNeg();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::scaleYUp()
+{
+	sg->scaleYPos();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::scaleYDown()
+{
+	sg->scaleYNeg();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::scaleZUp()
+{
+	sg->scaleZPos();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::scaleZDown()
+{
+	sg->scaleZNeg();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::rotateLeft()
+{
+	sg->rotLeft();
+	paintGL();
+	update();
+}
+
+void MyGLWidget::rotateRight()
+{
+	sg->rotRight();
 	paintGL();
 	update();
 }

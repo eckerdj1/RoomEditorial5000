@@ -53,6 +53,29 @@ public slots:
 	void lightZ(int);
 	void loadNewScene(string fileName);
 
+	void nextGeo();
+	void prevGeo();
+
+	void moveXPos();
+	void moveXNeg();
+	void moveYPos();
+	void moveYNeg();
+	void moveZPos();
+	void moveZNeg();
+
+	void scaleXUp();
+	void scaleXDown();
+	void scaleYUp();
+	void scaleYDown();
+	void scaleZUp();
+	void scaleZDown();
+
+	void rotateLeft();
+	void rotateRight();
+
+signals:
+	void sendInt(int);
+
 private:
 	unsigned int vertexShader;
 	unsigned int fragmentShader;
@@ -85,5 +108,7 @@ private:
 
 	vec3 lightPos;
 	mat4 lightMatrix;
+
+	int next;
 
 };
