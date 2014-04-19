@@ -30,9 +30,6 @@ void MyGLWidget::initializeGL() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClearDepth(1.0);
 
-	
-
-	//Do something similar to this to set up a buffer for colors
 	glGenBuffers(1, &vbo);
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -49,12 +46,10 @@ void MyGLWidget::initializeGL() {
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
 
-	//also want to get the location of "vs_color"
 	vLocation = glGetAttribLocation(shaderProgram, "vs_position");
 	vColor = glGetAttribLocation(shaderProgram, "vs_color");
 	vNormal = glGetAttribLocation(shaderProgram, "vs_normal");
 
-	//Do something similar to this to get the location of "u_modelMatrix"
 	u_projLocation = glGetUniformLocation(shaderProgram, "u_projMatrix");
 	u_modelMatrix = glGetUniformLocation(shaderProgram, "u_modelMatrix");
 	u_lightPos = glGetUniformLocation(shaderProgram, "u_lightPos");
@@ -75,7 +70,11 @@ void MyGLWidget::initializeGL() {
 	cameraRef = vec3(0.0f);
 
 	readScene("testSceneHW1.txt");
+
+	//In case children[0] is empty, selects next child no matter what
+	//Otherwise if children[0] is empty, manipulations would cause program crash
 	sg->incNext();
+	//Update the QT label
 	emit sendInt(sg->getNext());
 }
 
@@ -94,7 +93,7 @@ void MyGLWidget::paintGL() {
 	//Set the camera
 	cameraTrans = glm::lookAt(vec3(camPos.x, camPos.y, camPos.z), vec3(0, 0, 0), vec3(camUp.x, camUp.y, camUp.z));
 
-	//Create Camera Matrix
+	//Create Camera Matrix for the shader
 	glUniformMatrix4fv(u_cameraPos, 1, GL_FALSE, &cameraTrans[0][0]);
 
 	//Lighting Calculations and Representation
@@ -110,7 +109,6 @@ void MyGLWidget::paintGL() {
 	//Traverse the scene graph
 	sg->traverse(cameraTrans);
 	
-
 	glFlush();
 }
 
@@ -119,29 +117,6 @@ void MyGLWidget::setUniformMatrixAndDraw(mat4 matrix)
 	//glUniformMatrix4fv(u_modelMatrix, 1, GL_FALSE, &matrix[0][0]);
 	//glDrawArrays(GL_QUADS, 0, blueCube.vertexCount);
 }
-
-
-
-//An example on how to use the buffer to get position
-//void MyGLWidget::generateGasket() {
-//	glm::vec2* points = new glm::vec2[500000];
-//	
-//	glm::vec2 vertices[3] = {glm::vec2(-1.0, -1.0), glm::vec2(0.0, 1.0), glm::vec2(1.0, -1.0)};
-//	points[0] = glm::vec2(0.25, 0.50);
-//
-//	for(int i = 1; i < 500000; i++) {
-//		int k = rand() % 3;
-//
-//		points[i] = glm::vec2((points[i-1].x + vertices[k].x) / 2.0, (points[i-1].y + vertices[k].y) / 2.0);
-//	}
-//	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//	glBufferData(GL_ARRAY_BUFFER, 500000 * sizeof(glm::vec2), points, GL_STATIC_DRAW);
-//
-//	delete [] points;
-//
-//	glEnableVertexAttribArray(vLocation);
-//	glVertexAttribPointer(vLocation, 2, GL_FLOAT, GL_FALSE, 0, 0);
-//}
 
 void MyGLWidget::resizeGL(int width, int height) {
 	glViewport(0, 0, width, height);
@@ -235,8 +210,6 @@ void MyGLWidget::readScene(string filename)
 	sg->setFloorSize(x, z);
 	sg->linkGeometry(floor);
 	
-
-
 	for (int i=0; i<itemCount; ++i)
 	{
 		SceneGraph* s = new SceneGraph();
@@ -320,6 +293,7 @@ void MyGLWidget::loadNewScene(string fileName)
 	update();
 }
 
+//Selects next child and updates QT label
 void MyGLWidget::nextGeo()
 {
 	sg->incNext();
@@ -328,6 +302,7 @@ void MyGLWidget::nextGeo()
 	update();
 }
 
+//Selects previous child and updates QT label
 void MyGLWidget::prevGeo()
 {
 	sg->decNext();

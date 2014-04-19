@@ -1,3 +1,9 @@
+/*
+Creator: Dan Ecker
+Modified by: Garrett Young
+Purpose: Implements the scene graph architecture
+*/
+
 #include "SceneGraph.h"
 
 SceneGraph::SceneGraph()
@@ -29,13 +35,10 @@ SceneGraph::SceneGraph(int w, int d)
 	next = 0;
 }
 
-
 void SceneGraph::setChildCount(int c)
 {
 	//rootChildCount = c;
 }
-
-
 
 void SceneGraph::linkGeometry(Geometry* geom)
 {
@@ -48,8 +51,6 @@ void SceneGraph::setFloorSize(int x, int z)
 	floorX = x;
 	floorZ = z;
 }
-
-
 
 void SceneGraph::addChild(SceneGraph* sg, int x, int z)
 {
@@ -87,28 +88,7 @@ void SceneGraph::addChild(SceneGraph* sg)
 	}
 }
 
-//void SceneGraph::traverse(mat4 m)
-//{
-//	mat4 tr = glm::translate(mat4(1.0f), vec3(transX, transY, transZ));
-//	mat4 sc = glm::scale(mat4(1.0f), vec3(scaleX, scaleY, scaleZ));
-//	mat4 ro = glm::rotate(mat4(1.0f), rotY, vec3(0.0f, 1.0f, 0.0f));
-//
-//	m = m * tr * ro * sc;
-//
-//	if (model)
-//	{
-//		model->draw(m);
-//	}
-//
-//	for (int i=0; i<width * depth; ++i)
-//	{
-//		if (children[i])
-//		{
-//			children[i]->traverse(m);
-//		}
-//	}
-//}
-
+//Move through and draw children in the scene
 void SceneGraph::traverse(mat4 m)
 {
 	mat4 tr = glm::translate(mat4(1.0f), vec3(transX, transY, transZ));
@@ -131,6 +111,7 @@ void SceneGraph::traverse(mat4 m)
 	}
 }
 
+//Select next child in the scene
 void SceneGraph::incNext()
 {
 	next++;
@@ -140,6 +121,7 @@ void SceneGraph::incNext()
 		incNext();
 }
 
+//Select previous child in the scene
 void SceneGraph::decNext()
 {
 	next--;
