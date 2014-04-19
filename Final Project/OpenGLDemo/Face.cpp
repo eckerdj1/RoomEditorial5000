@@ -169,9 +169,9 @@ vector<Face> Face::splitIntoFourFaces()
 	//ajc: Here is the naming convention (A = HE0, B = HE1, C = HE2, D = HE3)
 	//D_______________________C
 	//|			|			  |
-	//|	Quad2	|	Quad1	  |
+	//|	Quad4	|	Quad3	  |
 	//|---------|-------------| <e.g. this point is BCHalfPt
-	//|	Quad3	|	Quad4	  |
+	//|	Quad1	|	Quad2	  |
 	//|_________|_____________|
 	//A			^ABHalfPt	  B
 	//Place a breakpoint here and use Immediate Window to observe idCounter.
