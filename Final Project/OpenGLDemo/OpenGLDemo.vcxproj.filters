@@ -134,6 +134,15 @@
     <ClCompile Include="PlanarityTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NextLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_NextLabel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_NextLabel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="opengldemo.h">
@@ -158,6 +167,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="LoadTextBox.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="NextLabel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

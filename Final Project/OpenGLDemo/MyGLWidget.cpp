@@ -76,6 +76,7 @@ void MyGLWidget::initializeGL() {
 
 	readScene("testSceneHW1.txt");
 	sg->incNext();
+	emit sendInt(sg->getNext());
 }
 
 void MyGLWidget::paintGL() {
@@ -322,6 +323,7 @@ void MyGLWidget::loadNewScene(string fileName)
 void MyGLWidget::nextGeo()
 {
 	sg->incNext();
+	emit sendInt(sg->getNext());
 	paintGL();
 	update();
 }
@@ -329,6 +331,7 @@ void MyGLWidget::nextGeo()
 void MyGLWidget::prevGeo()
 {
 	sg->decNext();
+	emit sendInt(sg->getNext());
 	paintGL();
 	update();
 }

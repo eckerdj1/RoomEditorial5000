@@ -39,6 +39,7 @@ public:
 
 	void incNext();
 	void decNext();
+	int getNext() {return next;}
 
 	void transXPos();
 	void transXNeg();
@@ -64,7 +65,6 @@ public:
 
 	void traverse(mat4 m);
 
-	
 private:
 	SceneGraph** children;
 	float height;

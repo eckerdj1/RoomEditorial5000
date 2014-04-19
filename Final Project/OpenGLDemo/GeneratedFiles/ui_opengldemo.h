@@ -9,6 +9,7 @@
 #ifndef UI_OPENGLDEMO_H
 #define UI_OPENGLDEMO_H
 
+#include <NextLabel.h>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -68,6 +69,7 @@ public:
     QLabel *label_7;
     QLabel *label_8;
     QLabel *label_9;
+    NextLabel *label_10;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -181,64 +183,78 @@ public:
         label_6->setWordWrap(true);
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(10, 600, 61, 23));
+        pushButton_2->setGeometry(QRect(10, 620, 61, 23));
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(140, 600, 31, 23));
         pushButton_4 = new QPushButton(centralWidget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(110, 600, 31, 23));
+        pushButton_4->setGeometry(QRect(110, 610, 31, 23));
         pushButton_5 = new QPushButton(centralWidget);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(80, 600, 31, 23));
         pushButton_6 = new QPushButton(centralWidget);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(110, 580, 31, 23));
+        pushButton_6->setGeometry(QRect(110, 590, 31, 23));
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(80, 580, 31, 23));
+        pushButton_7->setGeometry(QRect(80, 620, 31, 23));
         pushButton_8 = new QPushButton(centralWidget);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
         pushButton_8->setGeometry(QRect(140, 580, 31, 23));
         pushButton_9 = new QPushButton(centralWidget);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
-        pushButton_9->setGeometry(QRect(10, 580, 61, 23));
+        pushButton_9->setGeometry(QRect(10, 560, 61, 23));
         pushButton_12 = new QPushButton(centralWidget);
         pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
-        pushButton_12->setGeometry(QRect(300, 580, 75, 23));
+        pushButton_12->setGeometry(QRect(290, 580, 75, 23));
         pushButton_13 = new QPushButton(centralWidget);
         pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
-        pushButton_13->setGeometry(QRect(300, 600, 75, 23));
+        pushButton_13->setGeometry(QRect(290, 600, 75, 23));
         pushButton_10 = new QPushButton(centralWidget);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
-        pushButton_10->setGeometry(QRect(190, 580, 31, 23));
+        pushButton_10->setGeometry(QRect(200, 600, 31, 23));
         pushButton_11 = new QPushButton(centralWidget);
         pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
-        pushButton_11->setGeometry(QRect(220, 600, 31, 23));
+        pushButton_11->setGeometry(QRect(230, 620, 31, 23));
         pushButton_14 = new QPushButton(centralWidget);
         pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
-        pushButton_14->setGeometry(QRect(220, 580, 31, 23));
+        pushButton_14->setGeometry(QRect(200, 620, 31, 23));
         pushButton_15 = new QPushButton(centralWidget);
         pushButton_15->setObjectName(QStringLiteral("pushButton_15"));
-        pushButton_15->setGeometry(QRect(250, 600, 31, 23));
+        pushButton_15->setGeometry(QRect(230, 580, 31, 23));
         pushButton_16 = new QPushButton(centralWidget);
         pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
-        pushButton_16->setGeometry(QRect(250, 580, 31, 23));
+        pushButton_16->setGeometry(QRect(230, 600, 31, 23));
         pushButton_17 = new QPushButton(centralWidget);
         pushButton_17->setObjectName(QStringLiteral("pushButton_17"));
-        pushButton_17->setGeometry(QRect(190, 600, 31, 23));
+        pushButton_17->setGeometry(QRect(200, 580, 31, 23));
         label_7 = new QLabel(centralWidget);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setGeometry(QRect(80, 560, 101, 20));
         label_7->setFont(font2);
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(210, 560, 61, 20));
+        label_8->setGeometry(QRect(200, 560, 61, 20));
         label_8->setFont(font2);
         label_9 = new QLabel(centralWidget);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(300, 560, 71, 20));
+        label_9->setGeometry(QRect(290, 560, 71, 20));
         label_9->setFont(font2);
+        label_10 = new NextLabel(centralWidget);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(10, 580, 61, 41));
+        QFont font3;
+        font3.setFamily(QStringLiteral("Old English Text MT"));
+        font3.setPointSize(20);
+        font3.setBold(false);
+        font3.setWeight(50);
+        font3.setStyleStrategy(QFont::PreferDefault);
+        label_10->setFont(font3);
+        label_10->setFrameShape(QFrame::WinPanel);
+        label_10->setFrameShadow(QFrame::Sunken);
+        label_10->setLineWidth(1);
+        label_10->setAlignment(Qt::AlignCenter);
         OpenGLDemoClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(OpenGLDemoClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -281,6 +297,7 @@ public:
         QObject::connect(pushButton_13, SIGNAL(clicked()), widget, SLOT(rotateRight()));
         QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), widget, SLOT(lightX(int)));
         QObject::connect(horizontalSlider, SIGNAL(sliderMoved(int)), widget, SLOT(lightX(int)));
+        QObject::connect(widget, SIGNAL(sendInt(int)), label_10, SLOT(setNum(int)));
 
         QMetaObject::connectSlotsByName(OpenGLDemoClass);
     } // setupUi
@@ -314,6 +331,7 @@ public:
         label_7->setText(QApplication::translate("OpenGLDemoClass", "Translation", 0));
         label_8->setText(QApplication::translate("OpenGLDemoClass", "Scaling", 0));
         label_9->setText(QApplication::translate("OpenGLDemoClass", "Rotation", 0));
+        label_10->setText(QString());
     } // retranslateUi
 
 };

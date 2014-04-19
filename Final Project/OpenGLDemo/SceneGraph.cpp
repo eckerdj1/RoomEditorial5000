@@ -127,7 +127,7 @@ void SceneGraph::traverse(mat4 m)
 		if (children[i])
 		{
 			children[i]->traverse(m);
-		}
+		}			
 	}
 }
 

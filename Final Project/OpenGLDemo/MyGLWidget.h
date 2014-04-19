@@ -73,6 +73,9 @@ public slots:
 	void rotateLeft();
 	void rotateRight();
 
+signals:
+	void sendInt(int);
+
 private:
 	unsigned int vertexShader;
 	unsigned int fragmentShader;
