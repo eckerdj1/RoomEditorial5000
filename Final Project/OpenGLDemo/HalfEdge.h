@@ -11,6 +11,8 @@ class HalfEdge
 {
 public:
 	HalfEdge(void);
+	HalfEdge(const HalfEdge& copy);
+	HalfEdge& operator=(const HalfEdge& rhs) { return *this; }
 	~HalfEdge(void);
 	int id;
 	Face* ownerFace;

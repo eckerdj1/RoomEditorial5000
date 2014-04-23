@@ -59,6 +59,7 @@ Vertex::~Vertex(void)
 {
 }
 
+//A global function, not a member of Vertex.
 const vec4 calculateMidpoint(const vec4& ptA, const vec4& ptB)
 {
 	return vec4((ptA.x + ptB.x) / 2.0f,

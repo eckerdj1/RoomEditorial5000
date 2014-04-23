@@ -10,6 +10,15 @@ HalfEdge::HalfEdge(void)
 	nextEdge	= nullptr;
 }
 
+HalfEdge::HalfEdge(const HalfEdge& copy)
+{
+	//ajc: I was tired when I wrote this...it might be wrong.
+	id = idCounter++;
+	ownerFace	= copy.ownerFace;
+	vertex		= copy.vertex;
+	symetric	= copy.symetric;
+	nextEdge	= copy.nextEdge;
+}
 
 HalfEdge::~HalfEdge(void)
 {

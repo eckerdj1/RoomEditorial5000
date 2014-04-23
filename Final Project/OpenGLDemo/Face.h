@@ -1,5 +1,4 @@
 //Andrew Claudy
-
 #pragma once
 #include "HalfEdge.h"
 #include "Vertex.h"
@@ -39,6 +38,7 @@ class NotInitializedException : public exception
 	}
 };
 
+
 class Face //Four vertex plane
 {
 public:
@@ -50,8 +50,8 @@ public:
 		 const Vertex& three_, 
 		 const Vertex& four_);
 	void useHalfEdges(); //TODO: needs to return something
+	void assignOwnerFace();
 	vec4 calculateFaceNormal() const;
-	vector<Face> splitIntoFourFaces();
+	vector<Face*> splitIntoFourFaces();
 	vec4 calculateFaceCenterAveragePoint() const;
 };
-

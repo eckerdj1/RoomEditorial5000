@@ -1,5 +1,4 @@
 //Andrew Claudy
-
 #pragma once
 #include <glm\glm.hpp>
 using glm::vec3;
@@ -21,7 +20,7 @@ public:
 	int id;
 	vec4 position;	//In model space coordinates
 	vec3 color;		//RGB color
-	vec4 normal;	//Normal
+	vec4 normal;	//Normal (TODO: needs to be a vertex normal, not a face normal)
 
 	const vec4 calculateMidpoint(const vec4& withThisLocation) const;
 	const vec4 calculateMidpoint(const Vertex& withThisLocation) const;

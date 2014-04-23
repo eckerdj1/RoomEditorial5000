@@ -11,7 +11,7 @@ using std::vector;
 
 Face::Face(void)
 {
-	HE0 = nullptr;
+	HE0 = 0;
 }
 
 Face::Face(const Vertex& one_, 
@@ -48,15 +48,15 @@ Face::Face(const Vertex& one_,
 	HE0->nextEdge->nextEdge = new HalfEdge();
 	HalfEdge* HE2 = HE0->nextEdge->nextEdge; //Just identifier name alias
 	HE2->id = idCounter++;
-	HE2->symetric = HE0; //Set symmetry pointers
-	HE0->symetric = HE2; //Set symmetry pointers
+	HE2->symetric = nullptr; //Cannot set symmetry pointers here
+	HE0->symetric = nullptr; //Cannot set symmetry pointers here
 	HE2->ownerFace = this;
 
 	HE0->nextEdge->nextEdge->nextEdge = new HalfEdge();
 	HalfEdge* HE3 = HE0->nextEdge->nextEdge->nextEdge;
 	HE3->id = idCounter++;
-	HE3->symetric = HE1; //Set symmetry pointers
-	HE1->symetric = HE3; //Set symmetry pointers
+	HE3->symetric = nullptr; //Cannot set symmetry pointers here
+	HE1->symetric = nullptr; //Cannot set symmetry pointers here
 	HE3->ownerFace = this;
 	
 	//Don't forget that the 3rd HE needs a proper circular assignment
@@ -81,31 +81,34 @@ Face::Face(const Vertex& one_,
 
 
 Face::~Face(void)
-{/*
+{
+	/*
 	//DE stands for DELETING EDGE
 	HalfEdge *DE1 = nullptr, *DE2 = nullptr, *DE3 = nullptr;
 	if(HE0 != nullptr) //Prevent crashes from dereferencing null pointers.
-		DE1= HE0->nextEdge;
-
-	if(DE1 != nullptr)
 	{
-		DE2 = DE1->nextEdge;
-		delete DE1;
+		DE1= HE0->nextEdge;	
+
+		if(DE1 != nullptr) //old code was: && (int)DE1 != 0xfeeefeee)
+		{
+			DE2 = DE1->nextEdge;
+			delete DE1;
+		}
+
+		if(DE2 != nullptr)
+		{
+			DE3 = DE2->nextEdge;
+			delete DE2;
+		}
+
+		if(DE3 != nullptr)
+			delete DE3;
 	}
-
-	if(DE2 != nullptr)
-	{
-		DE3 = DE2->nextEdge;
-		delete DE2;
-	}
-
-	if(DE3 != nullptr)
-		delete DE3;
-
 	//Lastly,
 	if(HE0 != nullptr)
 		delete HE0;
-*/}
+		*/
+}
 
 
 void Face::useHalfEdges()
@@ -130,6 +133,17 @@ void Face::useHalfEdges()
 	*/
 }
 
+void Face::assignOwnerFace()
+{
+	if(HE0 == nullptr || HE0 == 0)
+		throw new NotInitializedException;
+
+	HE0->ownerFace = this;
+	HE0->nextEdge->ownerFace = this;
+	HE0->nextEdge->nextEdge->ownerFace = this;
+	HE0->nextEdge->nextEdge->nextEdge->ownerFace = this;
+}
+
 vec4 Face::calculateFaceNormal() const
 {
 	if(HE0 == nullptr)
@@ -149,7 +163,7 @@ vec4 Face::calculateFaceNormal() const
 	return vec4(crossProduct, 0.f); //make normal have w=0;
 }
 
-vector<Face> Face::splitIntoFourFaces()
+vector<Face*> Face::splitIntoFourFaces()
 {
 	if(HE0 == nullptr)
 		throw new NotInitializedException;
@@ -157,7 +171,7 @@ vector<Face> Face::splitIntoFourFaces()
 	HalfEdge *HE1 = HE0->nextEdge;
 	HalfEdge *HE2 = HE1->nextEdge;
 	HalfEdge *HE3 = HE2->nextEdge;
-	vector<Face> fourNewFaces;
+	vector<Face*> fourNewFaces;
 	
 	vec4 centroidAveragePointOfFace = calculateFaceCenterAveragePoint();
 	vec4 ABHalfPt = calculateMidpoint(HE0->vertex->position, HE1->vertex->position);
@@ -165,7 +179,7 @@ vector<Face> Face::splitIntoFourFaces()
 	vec4 CDHalfPt = calculateMidpoint(HE2->vertex->position, HE3->vertex->position);
 	vec4 DAHalfPt = calculateMidpoint(HE3->vertex->position, HE0->vertex->position);
 
-	//Instantiate 4 new faces
+	//instantiate 4 new faces
 	//ajc: Here is the naming convention (A = HE0, B = HE1, C = HE2, D = HE3)
 	//D_______________________C
 	//|			|			  |
@@ -176,35 +190,49 @@ vector<Face> Face::splitIntoFourFaces()
 	//A			^ABHalfPt	  B
 	//Place a breakpoint here and use Immediate Window to observe idCounter.
 	fourNewFaces.push_back(
-		Face( *(HE0->vertex), //A
+		new Face( *(HE0->vertex), //A
 		Vertex(ABHalfPt, HE0->vertex->color),
 		Vertex(centroidAveragePointOfFace, HE0->vertex->color),
 		Vertex(DAHalfPt, HE0->vertex->color) ) 
 		);
 
 	fourNewFaces.push_back( 
-		Face( Vertex(ABHalfPt, HE1->vertex->color),
+		new Face( Vertex(ABHalfPt, HE1->vertex->color),
 		*(HE1->vertex), //B
 		Vertex(BCHalfPt, HE1->vertex->color),
 		Vertex(centroidAveragePointOfFace, HE1->vertex->color) ) 
 		);
 
 	fourNewFaces.push_back(
-		Face( Vertex(centroidAveragePointOfFace, HE2->vertex->color),
+		new Face( Vertex(centroidAveragePointOfFace, HE2->vertex->color),
 		Vertex(BCHalfPt, HE2->vertex->color),
 		*(HE2->vertex), //C
 		Vertex(CDHalfPt, HE2->vertex->color) )
 		);
 
 	fourNewFaces.push_back(
-		Face( Vertex(DAHalfPt, HE3->vertex->color),
+		new Face( Vertex(DAHalfPt, HE3->vertex->color),
 		Vertex(centroidAveragePointOfFace, HE3->vertex->color),
 		Vertex(CDHalfPt, HE3->vertex->color),
 		*(HE3->vertex) ) //D
 		);
-	
+
+	//Begin 8 symmetry setup
+	fourNewFaces.at(0)->HE0->nextEdge->nextEdge->symetric = fourNewFaces.at(1)->HE0;
+	fourNewFaces.at(1)->HE0->symetric = fourNewFaces.at(0)->HE0->nextEdge->nextEdge;
+					  
+	fourNewFaces.at(1)->HE0->nextEdge->nextEdge->nextEdge->symetric = fourNewFaces.at(2)->HE0->nextEdge;
+	fourNewFaces.at(2)->HE0->nextEdge->symetric = fourNewFaces.at(1)->HE0->nextEdge->nextEdge->nextEdge;
+					  
+	fourNewFaces.at(2)->HE0->symetric = fourNewFaces.at(3)->HE0->nextEdge->nextEdge;
+	fourNewFaces.at(3)->HE0->nextEdge->nextEdge->symetric = fourNewFaces.at(2)->HE0;
+					  
+	fourNewFaces.at(3)->HE0->nextEdge->symetric = fourNewFaces.at(0)->HE0;
+	fourNewFaces.at(0)->HE0->symetric = fourNewFaces.at(3)->HE0->nextEdge;
+	//End of 8 symmetry setup
+
 	//Place a breakpoint here and use Immediate Window to observe idCounter.
-	return fourNewFaces;
+	return fourNewFaces; //Danger: ownerFace doesn't preserve here.
 }
 
 vec4 Face::calculateFaceCenterAveragePoint() const
