@@ -109,6 +109,4 @@ private:
 	vec3 lightPos;
 	//mat4 lightMatrix;
 
-	int next;
-
 };

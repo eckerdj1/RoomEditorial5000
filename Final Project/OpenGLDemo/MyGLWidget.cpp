@@ -11,7 +11,6 @@ MyGLWidget::MyGLWidget(QWidget* parent) : QGLWidget(parent) {
 		Vertex(vec4(2, 2, -2, 1), vec3(.8f, .7f, .43f)),
 		Vertex(vec4(1, 2, -2, 1), vec3(.8f, .7f, .43f))  );
 
-	next = 0;
 }
 
 MyGLWidget::~MyGLWidget() {
