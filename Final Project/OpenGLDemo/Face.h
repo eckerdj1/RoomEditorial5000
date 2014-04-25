@@ -45,13 +45,25 @@ public:
 	Face(void);
 	~Face(void);
 	HalfEdge* HE0; //I numbered the face's halfedges HE0, HE1, HE2, HE3
-	Face(const Vertex& one_, 
-		 const Vertex& two_, 
-		 const Vertex& three_, 
-		 const Vertex& four_);
+	Face(Vertex* one_, 
+		 Vertex* two_, 
+		 Vertex* three_, 
+		 Vertex* four_);
+	Face(vector<vec4> points);
+
+	HalfEdge* at(int i);
+
+	void addNewEdgeCCW(HalfEdge* he);
+	void addNewEdgeCW(HalfEdge* he);
+	void finishFace();
 	void useHalfEdges(); //TODO: needs to return something
 	void assignOwnerFace();
+	void setSymAt(int i, HalfEdge* he);
+	HalfEdge*& lastEdge();
 	vec4 calculateFaceNormal() const;
 	vector<Face*> splitIntoFourFaces();
 	vec4 calculateFaceCenterAveragePoint() const;
+
+	int id;
+	vec4 normal;
 };

@@ -12,19 +12,21 @@ using std::vector;
 Face::Face(void)
 {
 	HE0 = 0;
+	id = ID::getUniqueID();
 }
 
-Face::Face(const Vertex& one_, 
-		   const Vertex& two_, 
-		   const Vertex& three_, 
-		   const Vertex& four_)
+Face::Face(Vertex* one_, 
+		   Vertex* two_, 
+		   Vertex* three_, 
+		   Vertex* four_)
 {
+	id = ID::getUniqueID();
 	//I numbered the face's halfedges HE0, HE1, HE2, HE3
 	vector<vec4> positions = vector<vec4>();
-	positions.push_back(one_.position);
-	positions.push_back(two_.position);
-	positions.push_back(three_.position);
-	positions.push_back(four_.position);
+	positions.push_back(one_->position);
+	positions.push_back(two_->position);
+	positions.push_back(three_->position);
+	positions.push_back(four_->position);
 
 	if( !checkPlanarity(positions) )
 	{
@@ -38,23 +40,23 @@ Face::Face(const Vertex& one_,
 	//Set up the half edges, but don't assign vertices yet.
 	HE0 = new HalfEdge(); //HE0
 	HE0->ownerFace = this;
-	HE0->id = idCounter++;
+	HE0->id = ID::getUniqueID();
 
 	HE0->nextEdge = new HalfEdge();
 	HalfEdge* HE1 = HE0->nextEdge;
-	HE1->id = idCounter++;
+	HE1->id = ID::getUniqueID();
 	HE1->ownerFace = this;
 	
 	HE0->nextEdge->nextEdge = new HalfEdge();
 	HalfEdge* HE2 = HE0->nextEdge->nextEdge; //Just identifier name alias
-	HE2->id = idCounter++;
+	HE2->id = ID::getUniqueID();
 	HE2->symetric = nullptr; //Cannot set symmetry pointers here
 	HE0->symetric = nullptr; //Cannot set symmetry pointers here
 	HE2->ownerFace = this;
 
 	HE0->nextEdge->nextEdge->nextEdge = new HalfEdge();
 	HalfEdge* HE3 = HE0->nextEdge->nextEdge->nextEdge;
-	HE3->id = idCounter++;
+	HE3->id = ID::getUniqueID();
 	HE3->symetric = nullptr; //Cannot set symmetry pointers here
 	HE1->symetric = nullptr; //Cannot set symmetry pointers here
 	HE3->ownerFace = this;
@@ -63,11 +65,12 @@ Face::Face(const Vertex& one_,
 	HE3->nextEdge = HE0; //HE3->nextEdge = HE0
 
 	//Now assign the vertices.
-	//Uses copy constructor of Vertex...creates new Vertex objects.
-	HE0->vertex = new Vertex(one_);
-	HE0->nextEdge->vertex = new Vertex(two_);
-	HE0->nextEdge->nextEdge->vertex = new Vertex(three_);
-	HE0->nextEdge->nextEdge->nextEdge->vertex = new Vertex(four_);
+	//X-->!!!Uses copy constructor of Vertex...creates new Vertex objects.!!!
+	//Now uses the original pointer...we don't want new Vertex objects.
+	HE0->vertex = one_;
+	HE1->vertex = two_;
+	HE2->vertex = three_;
+	HE3->vertex = four_;
 
 	//Calculate the normal
 	vec4 calculatedNormal = calculateFaceNormal();
@@ -110,6 +113,56 @@ Face::~Face(void)
 		*/
 }
 
+void Face::addNewEdgeCCW(HalfEdge* he)
+{
+	if (!HE0)
+	{
+		HE0 = he;
+		return;
+	}
+	else
+	{
+		lastEdge()->nextEdge = he;
+	}
+}
+
+void Face::addNewEdgeCW(HalfEdge* he)
+{
+	he->nextEdge = HE0;
+	HE0 = he;
+}
+
+void Face::finishFace()
+{
+	lastEdge()->nextEdge = HE0;
+}
+
+HalfEdge*& Face::lastEdge()
+{
+	static HalfEdge* edge = HE0;
+	edge = HE0;
+	while(edge->nextEdge != nullptr)
+	{
+		edge = edge->nextEdge;
+	}
+	return edge;
+}
+
+HalfEdge* Face::at(int i)
+{
+	HalfEdge* edge = HE0;
+	for (int j=0; j<i; ++j)
+	{
+		edge = edge->nextEdge;
+	}
+	return edge;
+}
+// sets both sym pointers 
+void Face::setSymAt(int i, HalfEdge* he)
+{
+	at(i)->symetric = he;
+	he->symetric = at(i);
+}
 
 void Face::useHalfEdges()
 {
@@ -190,31 +243,31 @@ vector<Face*> Face::splitIntoFourFaces()
 	//A			^ABHalfPt	  B
 	//Place a breakpoint here and use Immediate Window to observe idCounter.
 	fourNewFaces.push_back(
-		new Face( *(HE0->vertex), //A
-		Vertex(ABHalfPt, HE0->vertex->color),
-		Vertex(centroidAveragePointOfFace, HE0->vertex->color),
-		Vertex(DAHalfPt, HE0->vertex->color) ) 
+		new Face( HE0->vertex, //A
+		new Vertex(ABHalfPt, HE0->vertex->color),
+		new Vertex(centroidAveragePointOfFace, HE0->vertex->color),
+		new Vertex(DAHalfPt, HE0->vertex->color) ) 
 		);
 
 	fourNewFaces.push_back( 
-		new Face( Vertex(ABHalfPt, HE1->vertex->color),
-		*(HE1->vertex), //B
-		Vertex(BCHalfPt, HE1->vertex->color),
-		Vertex(centroidAveragePointOfFace, HE1->vertex->color) ) 
+		new Face(new Vertex(ABHalfPt, HE1->vertex->color),
+		HE1->vertex, //B
+		new Vertex(BCHalfPt, HE1->vertex->color),
+		new Vertex(centroidAveragePointOfFace, HE1->vertex->color) ) 
 		);
 
 	fourNewFaces.push_back(
-		new Face( Vertex(centroidAveragePointOfFace, HE2->vertex->color),
-		Vertex(BCHalfPt, HE2->vertex->color),
-		*(HE2->vertex), //C
-		Vertex(CDHalfPt, HE2->vertex->color) )
+		new Face(new Vertex(centroidAveragePointOfFace, HE2->vertex->color),
+		new Vertex(BCHalfPt, HE2->vertex->color),
+		HE2->vertex, //C
+		new Vertex(CDHalfPt, HE2->vertex->color) )
 		);
 
 	fourNewFaces.push_back(
-		new Face( Vertex(DAHalfPt, HE3->vertex->color),
-		Vertex(centroidAveragePointOfFace, HE3->vertex->color),
-		Vertex(CDHalfPt, HE3->vertex->color),
-		*(HE3->vertex) ) //D
+		new Face(new Vertex(DAHalfPt, HE3->vertex->color),
+		new Vertex(centroidAveragePointOfFace, HE3->vertex->color),
+		new Vertex(CDHalfPt, HE3->vertex->color),
+		HE3->vertex) //D
 		);
 
 	//Begin 8 symmetry setup

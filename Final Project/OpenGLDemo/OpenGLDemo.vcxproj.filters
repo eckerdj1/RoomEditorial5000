@@ -146,6 +146,15 @@
     <ClCompile Include="MeshWithFaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Extrusion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfRev.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStuff.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="opengldemo.h">
@@ -222,6 +231,15 @@
     <ClInclude Include="MeshWithFaces.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SurfRev.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extrusion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStuff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="scene2.txt">
@@ -244,5 +262,23 @@
     <None Include="lambert.vert" />
     <None Include="phong.frag" />
     <None Include="phong.vert" />
+    <None Include="sampleScene1.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="extrusion1.dat">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="extrusion2.dat">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="surfrev1.dat">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="surfrev2.dat">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="surfrev3.dat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

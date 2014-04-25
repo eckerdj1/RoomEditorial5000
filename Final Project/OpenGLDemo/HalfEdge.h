@@ -2,9 +2,28 @@
 #pragma once
 #include "Face.h"
 #include "Vertex.h"
+//#include "MyStuff.h"
 
 //Forward Declaration
 class Face;
+
+struct triangle
+{
+	triangle(vec4 _p0, vec4 _p1, vec4 _p2)
+	{
+		p0 = _p0;
+		p1 = _p1;
+		p2 = _p2;
+
+		vec4 e1 = p1 - p0;
+		vec4 e2 = p2 - p0;
+		normal = glm::normalize(cross(e2, e1));
+	};
+	vec4 p0;
+	vec4 p1;
+	vec4 p2;
+	vec4 normal;
+};
 
 //COUNTER CLOCKWISE WINDING
 class HalfEdge
@@ -19,4 +38,11 @@ public:
 	Vertex* vertex;
 	HalfEdge* symetric;
 	HalfEdge* nextEdge;
+
+	void setSym(HalfEdge* he);
+	void copyPointers(HalfEdge* he);
+
+	HalfEdge* previousEdge();
+
+
 };

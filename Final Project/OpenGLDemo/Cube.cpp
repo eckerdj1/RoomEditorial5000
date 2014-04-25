@@ -239,11 +239,19 @@ size_t Cube::sizeOfBuffer(string buffer)
 
 void Cube::draw(mat4 trans)
 {
-	glBindBuffer(GL_ARRAY_BUFFER, cbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeOfBuffer("color"), colorData, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glEnableVertexAttribArray(vLocation);
+	glVertexAttribPointer(vLocation, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+
+	glBindBuffer(GL_ARRAY_BUFFER, nbo);
+	glEnableVertexAttribArray(vNormal);
+	glVertexAttribPointer(vNormal, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	
+	glBindBuffer(GL_ARRAY_BUFFER, cbo);
 	glEnableVertexAttribArray(vColor);
 	glVertexAttribPointer(vColor, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
 	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, &trans[0][0]);
 	//glDrawArrays(GL_QUADS, 0, vertexCount);

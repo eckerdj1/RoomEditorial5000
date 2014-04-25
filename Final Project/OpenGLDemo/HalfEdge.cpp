@@ -13,7 +13,9 @@ HalfEdge::HalfEdge(void)
 HalfEdge::HalfEdge(const HalfEdge& copy)
 {
 	//ajc: I was tired when I wrote this...it might be wrong.
-	id = idCounter++;
+
+	//dje: I changed this to copy's id. I think it was wrong. 
+	id = copy.id;//++;
 	ownerFace	= copy.ownerFace;
 	vertex		= copy.vertex;
 	symetric	= copy.symetric;
@@ -25,3 +27,28 @@ HalfEdge::~HalfEdge(void)
 	if(vertex != nullptr)
 		delete vertex;
 }
+
+void HalfEdge::setSym(HalfEdge* he)
+{
+	symetric = he;
+	he->symetric = this;
+}
+
+void HalfEdge::copyPointers(HalfEdge* he)
+{
+	nextEdge = he->nextEdge;
+	vertex = he->vertex;
+}
+
+HalfEdge* HalfEdge::previousEdge()
+{
+	HalfEdge* current = this;
+
+	do
+	{
+		current = current->nextEdge;
+	}while (current->nextEdge != this && current->nextEdge != 0);
+
+	return current;
+}
+

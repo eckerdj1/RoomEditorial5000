@@ -14,6 +14,7 @@
 #include "Table.h"
 #include "Box.h"
 #include "SceneGraph.h"
+#include "Mesh.h"
 
 
 #define BUFFER_OFFSET(bytes) ((GLvoid*) (bytes))
@@ -41,6 +42,8 @@ public:
 	//helper function to read shader source and put it in a char array
 	//thanks to Swiftless.com
 	char* textFileRead(const char*);
+
+	ID id;
 
 public slots:
 	void rotateCameraY(int);
@@ -97,6 +100,8 @@ private:
 	Table* table;
 	Chair* chair;
 	Box* box;
+
+	vector<Mesh*> meshes;
 
 	mat4 cameraTrans;
 	vec3 cameraPos;

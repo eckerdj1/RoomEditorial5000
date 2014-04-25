@@ -6,10 +6,10 @@ MyGLWidget::MyGLWidget(QWidget* parent) : QGLWidget(parent) {
 	camRotX = -45.0f;
 	camRotY = 0.0f;
 	lightPos = vec3(0.0f, 5.5f, 10.0f);
-	Face f( Vertex(vec4(1, 1, -1, 1), vec3(.8f, .7f, .43f)),
+	/*Face f( Vertex(vec4(1, 1, -1, 1), vec3(.8f, .7f, .43f)),
 		Vertex(vec4(2, 1, -1, 1), vec3(.8f, .7f, .43f)),
 		Vertex(vec4(2, 2, -2, 1), vec3(.8f, .7f, .43f)),
-		Vertex(vec4(1, 2, -2, 1), vec3(.8f, .7f, .43f))  );
+		Vertex(vec4(1, 2, -2, 1), vec3(.8f, .7f, .43f))  );*/
 
 }
 
@@ -68,7 +68,8 @@ void MyGLWidget::initializeGL() {
 	cameraUp = vec3(0.0f, 1.0f, 0.0f);
 	cameraRef = vec3(0.0f);
 
-	readScene("testSceneHW1.txt");
+
+	readScene("sampleScene1.txt");
 
 	//In case children[0] is empty, selects next child no matter what
 	//Otherwise if children[0] is empty, manipulations would cause program crash
@@ -221,13 +222,30 @@ void MyGLWidget::readScene(string filename)
 		string type;
 		int xx, zz, theta;
 		float sx, sy, sz;
-		fin >> type >> xx >> zz >> theta >> sx >> sy >> sz;
+		fin >> type; 
 		if (type == "table")
 			s->linkGeometry(table);
 		if (type == "chair")
 			s->linkGeometry(chair);
 		if (type == "box")
 			s->linkGeometry(box);
+		if (type == "mesh")
+		{
+			string fileName;
+			fin >> fileName;
+			int sCount;
+			fin >> sCount;
+			Mesh* m = new Mesh();
+			m->init(shaderProgram);
+			m->setSubdivisionCount(sCount);
+			m->makeMeshFromFile(fileName);
+			s->linkGeometry(m);
+		}
+		if (type == "sphere")
+		{
+
+		}
+		fin >> xx >> zz >> theta >> sx >> sy >> sz;
 		s->setFloorSize(x,z);
 		s->setRotY(theta);
 		s->setScaleX(sx);
