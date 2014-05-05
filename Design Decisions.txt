@@ -1,0 +1,9 @@
+Half-edge data structure was chosen as the primary focus for procedurally generated meshes because of its resilience and lightweight requirements when correct. A half-edge points at a vertex (many half-edges-to-one-vertex) relationship, the face who owns the halfedge (one face-to-many HE relationship), the halfedge may or may not point to a single adjacent half-edge on a different face (one HE to one symmetric half-edge), and is basically all pointers. Although it was suppose to make Catmull-Clark subdivision easier...Dan and Claudy both had minor brain scarring after their attempts.
+
+Our geometry is separate from our procedurally generated meshes. In other words, we don’t have mesh “integration”. We kept procedurally generated meshes in a separate class to prevent catmull clark from being fired upon the mesh.
+
+The raytrace button and catmull clark button don’t do anything currently, probably because there isn’t any code in the Room Editor 5000 to connect the buttons to.
+
+We finished part of the ray generation milestone. We were not able to get aspect ratio to affect the picture without blanking it.
+
+Ray intersection tests are complete. A winner is us. If there are any bugs lurking in the intersection testing, its in the cube-ray intersection test function. It remains separate from the Room Editor 5000 code project.

@@ -1,0 +1,7 @@
+Garrett Young contributed to the Scene Graph mutation, the Blinn Phong lighting and part of the ray intersection (his part being ray polygon intersection). The Blinn Phong lighting did what was required of it and the Scene Graph mutation was more or less implemented properly, though the level of recursion in traversing the scene was not as in depth as it needed to be. He also worked on the ray generation milestone, but did not get it entirely completed. 
+
+Andrew Claudy worked on the ray intersection with spheres and boxes, the half-edge data structure, the face data structure, and he started catmull clark subdivision but became stuck. Dan Ecker later took over doing the catmull clark subdivision. He also helped on the ray generation milestone.
+
+Dan Ecker contributed to the majority of the catmull clark subdivision, and part of the half-edge data structure. His homework was used as the base of the scene graph.
+
+Aspect Ratio: http://xkcdsw.com/3759
