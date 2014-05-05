@@ -1,5 +1,8 @@
-//Andrew Claudy
-#pragma once
+//Author(s):Andrew Claudy, Dan Ecker, Garrett Young
+//COMP 361
+//Due May 5th, 2014
+//Desc: A vertex knows which HE points to it. 
+
 #include <glm\glm.hpp>
 using glm::vec3;
 using glm::vec4;

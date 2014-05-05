@@ -1,3 +1,8 @@
+//Author(s):Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: Draws the floor
+
 #include "Floor.h"
 
 Floor::Floor()

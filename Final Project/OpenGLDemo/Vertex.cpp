@@ -1,4 +1,7 @@
 //Andrew Claudy
+//COMP 361
+//Due May 5th, 2014
+//Desc: 
 
 #include "Vertex.h"
 #include "HalfEdge.h"

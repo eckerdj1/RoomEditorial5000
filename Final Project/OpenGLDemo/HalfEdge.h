@@ -1,4 +1,7 @@
-//Andrew Claudy
+//Author(s):Andrew Claudy, Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: 
 #pragma once
 #include "Face.h"
 #include "Vertex.h"

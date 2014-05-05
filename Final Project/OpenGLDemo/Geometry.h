@@ -1,3 +1,8 @@
+//Author(s):Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: Most geometry is drawn from this class
+
 #pragma once
 #include "../glm/glm.hpp"
 #include "../glm/gtc/matrix_transform.hpp"

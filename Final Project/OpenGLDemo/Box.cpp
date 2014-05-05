@@ -1,3 +1,7 @@
+//Author(s):Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: 
 #include "Box.h"
 
 Box::Box()

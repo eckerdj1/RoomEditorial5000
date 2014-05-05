@@ -1,5 +1,8 @@
-//Andrew Claudy
-//I numbered the face's halfedges HE0, HE1, HE2, HE3
+//Author(s):Andrew Claudy, Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: 
+//ajc: I numbered the face's halfedges HE0, HE1, HE2, HE3
 
 #include "Face.h"
 

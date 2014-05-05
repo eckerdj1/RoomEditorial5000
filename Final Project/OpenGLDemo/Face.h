@@ -1,4 +1,8 @@
-//Andrew Claudy
+//Author(s):Andrew Claudy, Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: Points to exactly one halfedge.
+
 #pragma once
 #include "HalfEdge.h"
 #include "Vertex.h"

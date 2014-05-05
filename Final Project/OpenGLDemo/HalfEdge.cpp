@@ -1,5 +1,9 @@
-#include "HalfEdge.h"
+//Author(s):Andrew Claudy, Dan Ecker
+//COMP 361
+//Due May 5th, 2014
+//Desc: 
 
+#include "HalfEdge.h"
 
 HalfEdge::HalfEdge(void)
 {

@@ -1,5 +1,7 @@
-//Andrew Claudy
-
+//Author(s):Andrew Claudy
+//COMP 361
+//Due May 5th, 2014
+//Desc: 
 #include "ConvexityTester.h"
 
 #include <vector>
