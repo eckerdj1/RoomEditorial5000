@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'opengldemo.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.1
+** Created by: Qt User Interface Compiler version 5.2.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -70,6 +70,10 @@ public:
     QLabel *label_8;
     QLabel *label_9;
     NextLabel *label_10;
+    QLabel *label_11;
+    QPushButton *pushButtonSubDivide;
+    QLabel *label_12;
+    QPushButton *pushButtonSubDivide_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -78,7 +82,7 @@ public:
     {
         if (OpenGLDemoClass->objectName().isEmpty())
             OpenGLDemoClass->setObjectName(QStringLiteral("OpenGLDemoClass"));
-        OpenGLDemoClass->resize(807, 701);
+        OpenGLDemoClass->resize(807, 751);
         centralWidget = new QWidget(OpenGLDemoClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         widget = new MyGLWidget(centralWidget);
@@ -255,6 +259,20 @@ public:
         label_10->setFrameShadow(QFrame::Sunken);
         label_10->setLineWidth(1);
         label_10->setAlignment(Qt::AlignCenter);
+        label_11 = new QLabel(centralWidget);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(110, 650, 111, 20));
+        label_11->setFont(font2);
+        pushButtonSubDivide = new QPushButton(centralWidget);
+        pushButtonSubDivide->setObjectName(QStringLiteral("pushButtonSubDivide"));
+        pushButtonSubDivide->setGeometry(QRect(110, 670, 101, 23));
+        label_12 = new QLabel(centralWidget);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(320, 650, 81, 20));
+        label_12->setFont(font2);
+        pushButtonSubDivide_2 = new QPushButton(centralWidget);
+        pushButtonSubDivide_2->setObjectName(QStringLiteral("pushButtonSubDivide_2"));
+        pushButtonSubDivide_2->setGeometry(QRect(310, 670, 101, 23));
         OpenGLDemoClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(OpenGLDemoClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -332,6 +350,10 @@ public:
         label_8->setText(QApplication::translate("OpenGLDemoClass", "Scaling", 0));
         label_9->setText(QApplication::translate("OpenGLDemoClass", "Rotation", 0));
         label_10->setText(QString());
+        label_11->setText(QApplication::translate("OpenGLDemoClass", "Catmull-Clark", 0));
+        pushButtonSubDivide->setText(QApplication::translate("OpenGLDemoClass", "Subdivide", 0));
+        label_12->setText(QApplication::translate("OpenGLDemoClass", "Raytracing", 0));
+        pushButtonSubDivide_2->setText(QApplication::translate("OpenGLDemoClass", "Raytrace", 0));
     } // retranslateUi
 
 };
